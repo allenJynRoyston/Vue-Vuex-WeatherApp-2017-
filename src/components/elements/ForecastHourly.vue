@@ -5,12 +5,16 @@
       v-data-table.elevation-3(v-bind:headers='tableHeaders' :items="forecastData.hourly.data" )
         template(slot='items', slot-scope='props')
           td {{convertToDay(props.item.time, 'MMM')}} {{convertToDay(props.item.time, 'DD')}} &nbsp;&nbsp; {{ convertToDay(props.item.time, 'HH:mm') }}
-          td.text-xs-right {{ props.item.summary }}
+          td.text-xs-right {{ convertToScottish(props.item.summary) }}
           td.text-xs-right {{ props.item.humidity }}
           td.text-xs-right {{ props.item.pressure }}
           td.text-xs-right
             a(@click='convertTemperature()') {{ convertDegrees(props.item.temperature) }}{{degreeType}}
           td.text-xs-right(v-if='props.item.precipProbability > 0') {{ (props.item.precipProbability * 100).toFixed(0) }}% of {{props.item.precipType}}
+      p.right
+        a(@click='translate = !translate') Translate to&nbsp;
+          span(v-show='!translate') Scottish
+          span(v-show='translate') English
 </template>
 
 <script>
@@ -20,6 +24,7 @@
     data () {
       return {
         forecastData: this._props.forecastdata,
+        scottishWeatherDictionary: this.$store.getters._scottishWeatherDictionary(),
         tableHeaders: [
           {text: 'Time', value: 'time'},
           {text: 'Summary', value: 'description'},
@@ -28,10 +33,17 @@
           {text: 'Temperature', value: 'temperature'},
           {text: 'Notes', value: 'notes'}
         ],
+        translate: false,
         degreeType: '°C'
       }
     },
     methods: {
+      convertToScottish(key){
+        if(this.scottishWeatherDictionary[key.toUpperCase()] === undefined){
+          return 'Rain, probably'
+        }
+        return this.translate ? this.scottishWeatherDictionary[key.toUpperCase()] : key
+      },
       convertToDay(value, format){
         return moment(value*1000).format(format);
       },

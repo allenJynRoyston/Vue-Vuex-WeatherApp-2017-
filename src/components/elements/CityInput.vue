@@ -9,11 +9,11 @@
                   p.red--text(v-if='hasError') Invalid search
               v-layout.row
                 v-flex.xs6
-                  v-chip.blue.cursor
-                    a(@click='getForecast(search)').white--text Get Forecast
+                  v-chip.blue.cursor(@click='getForecast(search)')
+                    a.white--text Get Forecast
                 v-flex.xs6
-                  v-chip.red.cursor.right
-                    a(@click='clearSearch()').white--text Clear
+                  v-chip.red.cursor.right(@click='clearSearch()')
+                    a.white--text Clear
 </template>
 
 <script>
@@ -27,7 +27,8 @@
         search: this._props.cityName,
         initName: this._props.cityName ? this._props.cityName : null,
         startSearchAutomatically: this._props.autoSearch ? this._props.autoSearch : false,
-        hasError: false
+        hasError: false,
+        isLoading: this.$store.getters._isLoading()
       }
     },
     mounted(){
@@ -44,10 +45,14 @@
       async getForecast(search){
         try{
           this.hasError = false
+          this.store.commit('setIsLoading', true)
+
           /* ENABLE FOR LIVE DATA */
           let res = await this.$http.get(`/api/forecast/${search}`);
           /* ENABLE FOR TEST DATA */
-          //let res = await this.$http.get(`/src/assets/testdata.json`);
+          //let jsn = await this.$http.get(`/src/assets/testdata.json`); let res = {body: {success: true, payload: jsn.body}}
+
+          this.store.commit('setIsLoading', false)
           if(res.body.success){
             this.router.push({ path: `/forecast/${search}` })
             this.store.commit('setWeatherData', {success: true, city: this.search, data: res.body.payload})
@@ -55,6 +60,7 @@
           else{
             this.hasError = true
           }
+
         } catch (reason) {
           this.store.commit('setWeatherData', {success: false, data: reason})
         }

@@ -9,12 +9,12 @@ import Router from 'vue-router'
 Vue.use(Router)
 Vue.use(Vuetify)
 Vue.use(VueResource);
-Vue.component('PageHeader', require('../components/Header.vue'))
-Vue.component('PageFooter', require('../components/Footer.vue'))
-Vue.component('CityInput', require('../components/CityInput.vue'))
-Vue.component('ForecastHourly', require('../components/ForecastHourly.vue'))
-Vue.component('ForecastWarnings', require('../components/ForecastWarnings.vue'))
-Vue.component('ForecastWeekly', require('../components/ForecastWeekly.vue'))
+Vue.component('PageHeader', require('../components/elements/Header.vue'))
+Vue.component('PageFooter', require('../components/elements/Footer.vue'))
+Vue.component('CityInput', require('../components/elements/CityInput.vue'))
+Vue.component('ForecastHourly', require('../components/elements/ForecastHourly.vue'))
+Vue.component('ForecastWarnings', require('../components/elements/ForecastWarnings.vue'))
+Vue.component('ForecastWeekly', require('../components/elements/ForecastWeekly.vue'))
 
 export default new Router({
   routes: [
