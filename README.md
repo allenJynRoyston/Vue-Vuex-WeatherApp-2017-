@@ -40,6 +40,12 @@ You'll need to place them in the file apiKeys.json in the root folder.
 }
 ```
 
+### How to run locally, the differnce
+There are essentially two ways to work on the app.  One is without the server running and using only Webpack.  The benefits to this are is that it's faster, but you don't have access to any of the Express server APIs.  For any interaction you'll need to simulate it.  This is fine when just working on front-end components.  
+
+The other way is to start the server and have Webpack rebundle everytime an edit is made.  This is substancially more intrustive and slower, so it's recommended you only use this method when you need to test out some server calls.  
+
+
 ### Full local install (server + webpack):
 Install, start server with live reload when editing.
 ```sh
