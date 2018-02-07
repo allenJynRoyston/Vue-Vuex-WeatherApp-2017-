@@ -73,7 +73,8 @@
         }
       },
       clearSearch(){
-          this.store.commit('setWeatherData', {success: false, data: null})
+        this.search = null;
+        this.store.commit('setWeatherData', {success: false, data: null})
       }
     }
   }
