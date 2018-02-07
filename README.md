@@ -52,6 +52,7 @@ Install, start server with live reload when editing.
 $ git clone https://github.com/allenRoyston/designX-weather-app.git
 $ cd designX-weather-app
 $ npm install
+// MAKE SURE YOU HAVE THOSE KEYS PLACED IN THE APIKEYS.JSON!
 $ npm run build
 $ gulp
 ```
