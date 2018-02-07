@@ -5,7 +5,7 @@
     v-spacer
     v-toolbar-side-icon.hidden-md-and-up
     v-toolbar-items.hidden-sm-and-down
-        router-link(to="/forecast")
+        router-link(to="/")
           .flat
             img.title-logo(src='src/assets/weather.png')
   </template>

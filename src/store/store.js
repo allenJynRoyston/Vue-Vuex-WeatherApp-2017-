@@ -5,32 +5,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    appReady: false,
-    isActive: false,
-    progressBar: 0,
-    headerIsOpen: true
+    weatherData: null,
+    dailyData: null,
+    showWarnings: true
   },
   getters: {
-    _appReady: state => () => state.appReady,
-    _isActive: state => () => state.isActive,
-    _progressBar: state => () => state.progressBar,
-    _headerIsOpen: state => () => state.headerIsOpen
+    _weatherData: state => () => state.weatherData,
+    _dailyData: state => () => state.dailyData,
+    _showWarnings: state => () => state.showWarnings
   },
   mutations: {
-    setAppState(state, value){
-      state.appReady = value
+    setWeatherData(state, value){
+      state.weatherData = value
     },
-    overlay_on(state) {
-      state.isActive = true;
+    setDailyData(state, value){
+      state.dailyData = value
     },
-    overlay_off(state) {
-      state.isActive = false;
-    },
-    setProgressBar(state, value){
-      state.progressBar = value;
-    },
-    setHeader (state, value) {
-      state.headerIsOpen = value
+    setShowWarnings(state, value){
+      state.showWarnings = value;
     }
   }
 })

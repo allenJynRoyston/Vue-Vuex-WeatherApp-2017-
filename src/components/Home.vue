@@ -3,12 +3,10 @@
     main
       section
         v-parallax(src='src/assets/hero.jpg', height='600')
-          v-layout.white--text(column='', align-center='', justify-center='')
+          v-layout.white--text(column align-center justify-center)
             h1.white--text.mb-2.display-3 Weather Demo
-            .headline.mb-3.text-xs-center Powered by Vue | Vuetify | ES6 | Webpack | Express4 
-            a(@click='backToTop()')
-              router-link(@click='backToTop()' to="/forecast")
-                v-btn.blue.lighten-2.mt-5.dark.large Forecast
+            .headline.mb-3.text-xs-center Powered by Vue | Vuetify | ES6 | Webpack | Express4
+            city-input.input-box(v-bind:cityName='"Edinburgh"' v-bind:autoSearch='false')
     section
       v-layout.my-5.column.wrap.align-center
         v-flex.my-3.xs12.sm4
@@ -54,8 +52,8 @@
         v-layout(column='', align-center='', justify-center='')
           .headline.white--text.mb-3 Weather checking is literally as simple as clicking this button
           a(@click='backToTop()')
-            router-link(to="/forecast")
-              v-btn.blue.lighten-2.mt-5.dark.large Forecast
+            router-link(to="/forecast/Edinburgh")
+              v-btn.blue.lighten-2.mt-5.dark.large Get Local Forecast
 
     section
       v-container(grid-list-xl='')
@@ -97,11 +95,17 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Hello World'
+      store: this.$store,
+      router: this.$router
     }
   },
-  created: function () {
-
+  mounted: function () {
+    this.backToTop();
+    this.store.watch(this.store.getters._weatherData, (val) => {
+      if(val.success){
+        this.router.push(`/forecast/${val.city}`)
+      }
+    })
   },
   methods: {
     backToTop(){
@@ -117,4 +121,6 @@ export default {
   .title-logo
     width: 50px
     height: 50px
+  .input-box
+    width: 400px
 </style>

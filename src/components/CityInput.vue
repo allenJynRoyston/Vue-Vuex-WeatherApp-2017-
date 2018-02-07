@@ -1,0 +1,77 @@
+<template lang='pug'>
+  div
+    v-card.grey.lighten-4.elevation-2
+        v-card-text
+            v-container
+              v-layout.row
+                v-flex.xs12
+                  v-text-field.black--text(v-model="search" @keyup="keymonitor" label='Enter a city name')
+                  p.red--text(v-if='hasError') Invalid search
+              v-layout.row
+                v-flex.xs6
+                  v-chip.blue.cursor
+                    a(@click='getForecast(search)').white--text Get Forecast
+                v-flex.xs6
+                  v-chip.red.cursor.right
+                    a(@click='clearSearch()').white--text Clear
+</template>
+
+<script>
+  export default {
+    name: 'city-input',
+    props: ['cityName', 'autoSearch'],
+    data () {
+      return {
+        router: this.$router,
+        store: this.$store,
+        search: this._props.cityName,
+        initName: this._props.cityName ? this._props.cityName : null,
+        startSearchAutomatically: this._props.autoSearch ? this._props.autoSearch : false,
+        hasError: false
+      }
+    },
+    mounted(){
+      if(this.initName !== null && this.startSearchAutomatically){
+        this.getForecast(this.initName)
+      }
+    },
+    methods: {
+      keymonitor(event) {
+        if(event.keyCode === 13 && this.search.length > 0){
+  			   this.getForecast(this.search)
+        }
+      },
+      async getForecast(search){
+        try{
+          this.hasError = false
+          /* ENABLE FOR LIVE DATA */
+          let res = await this.$http.get(`/api/forecast/${search}`);
+          /* ENABLE FOR TEST DATA */
+          //let res = await this.$http.get(`/src/assets/testdata.json`);
+          if(res.body.success){
+            this.router.push({ path: `/forecast/${search}` })
+            this.store.commit('setWeatherData', {success: true, city: this.search, data: res.body.payload})
+          }
+          else{
+            this.hasError = true
+          }
+        } catch (reason) {
+          this.store.commit('setWeatherData', {success: false, data: reason})
+        }
+      },
+      clearSearch(){
+          this.store.commit('setWeatherData', {success: false, data: null})
+      }
+    }
+  }
+</script>
+
+<style lang="sass" scoped>
+  .footer
+    width: 100%
+    height: 90px
+    background-color: black
+    color: white
+  .footer-text
+    padding: 20px
+</style>
