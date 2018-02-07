@@ -1,7 +1,17 @@
 # Forecast Weatherapp + Darksky's API
 
 ### What the funk?!
+Full disclosure, this is built off the foundational work of another one of my boilerplate projects, located [here](https://github.com/allenRoyston/weather-forecast-demo).  However, this build is signifigantly different in terms of features and complexity.
 
+### Technologies used
+- VueJS
+- Vuex
+- Vuetify
+- Webpack
+- ExpressJS/Node
+- Pug
+- SASS
+- Gulp
 
 ### Preview
 Live preview can be found [here](https://darkski-weather-api.herokuapp.com/#/)
