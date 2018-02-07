@@ -1,7 +1,7 @@
 # Forecast Weatherapp + Darksky's API
 
 ### What the funk?!
-Full disclosure, this is built off the foundational work of another one of my boilerplate projects, located [here](https://github.com/allenRoyston/weather-forecast-demo).  However, this build is signifigantly different in terms of features and complexity.
+Full disclosure, this is built off a very similar project I completed as a proof of concept a few months ago, located [here](https://github.com/allenRoyston/weather-forecast-demo).  It uses a lot of the same technologies.  However, this build is signifigantly different in terms of features and complexity and as such, much improved over its predecessor.  
 
 ### Technologies used
 - VueJS
@@ -12,6 +12,14 @@ Full disclosure, this is built off the foundational work of another one of my bo
 - Pug
 - SASS
 - Gulp
+- DarkSky (just the API, not a library)
+
+### About
+This proof of concept is a SPA (single page app) built with the modern web component framework, Vue.  It also utilizes the "single source of truth" via Vuex to handle it's view/model bindings.  Pug is used as my HTML templating system because it's clean and concise (and much less a headache to look at than standard HTML) while SASS is used in much the same way to deal with CSS.  Webpack is used to bundle all the required resources into a single /dist/main.js file.  
+
+The only tricky part was getting the DarkSky API to look up an weather dated with only a city name.  This can not be accomplished on its own since the API requiers a lat/long for it's services to work; therefore, Google's Geocode API is called first to get the lat/long and before passing that data onto Darksky's API.  Finally, the weather data payload is returned.  All this is done in a single GET, which is can be found in the server.js file and called in the src/components/element/CtyInput.vue component.
+
+Lastly, it deserves to be mentioned that because this proof of concept requires API keys to reach both DarkSky and Google, for security reasons they won't be provided.  You'll have to supply your own.  See Prerequisites below for more information.
 
 ### Preview
 Live preview can be found [here](https://darkski-weather-api.herokuapp.com/#/)
