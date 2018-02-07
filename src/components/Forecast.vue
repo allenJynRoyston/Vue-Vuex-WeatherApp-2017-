@@ -2,11 +2,13 @@
     .container.weather-container
         city-input(v-bind:cityName='cityName' v-bind:autoSearch='true')
         br
-        a.right(v-if='forecastData !== null && forecastData.alerts !== undefined' @click='changeWarningState(!show.warnings)')
-          span(v-if='show.warnings') Hide&nbsp;
-          span(v-if='!show.warnings') Show&nbsp;
-          | Warnings &nbsp;&nbsp;
         v-progress-linear(v-if='isLoading' indeterminate=true )
+        div(v-show='!isLoading')
+          a.right(v-if='forecastData !== null && forecastData.alerts !== undefined' @click='changeWarningState(!show.warnings)')
+            span(v-if='show.warnings') Hide&nbsp;
+            span(v-if='!show.warnings') Show&nbsp;
+            | Warnings &nbsp;&nbsp;
+          
 
         div(v-show='!isLoading')
           p.left(v-if='forecastData !== null')

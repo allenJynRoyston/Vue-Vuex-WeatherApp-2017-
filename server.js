@@ -1,14 +1,12 @@
-const express = require('express')
-const request = require('request')
-const fs = require('fs')
-const path = require('path')
-const index = fs.readFileSync(path.join(__dirname, './index.html'), 'utf8')
-const compression = require('compression');
-const app = express()
+const express = require('express'),
+      request = require('request'),
+      fs = require('fs'),
+      path = require('path'),
+      index = fs.readFileSync(path.join(__dirname, './index.html'), 'utf8'),
+      compression = require('compression'),
+      app = express(),
+      {darkSkiesKey, googleApiKey} = JSON.parse(fs.readFileSync('apiKeys.json', 'utf8'));
 
-// I'M SO EXPOOOSEED!!!
-const darkSkiesKey = "e77dba0cdb84e26c9accd444053db3cf"
-const googleApiKey = 'AIzaSyBXEkCer6TGy2QevaKV3n4Fokf5LC114N8'
 
 // setup compression
 app.use(compression())

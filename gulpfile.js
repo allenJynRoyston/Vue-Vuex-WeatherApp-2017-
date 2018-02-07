@@ -55,7 +55,7 @@ gulp.task('browser-sync', ['start-server'], function() {
   var queue = sequence(100);  // SMALL DELAY SO CLEARHTML DOESN'T BREAK
 
   /* CSS */
-  watch('src/components/*.*', {
+  watch('src/components/**/*.*', {
     emitOnGlob: false
   }, queue.getHandler('rebuild-webpack', 'trigger-sync'));
 })
