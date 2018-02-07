@@ -13,6 +13,7 @@ Full disclosure, this is built off a very similar project I completed as a proof
 - SASS
 - Gulp
 - DarkSky (just the API, not a library)
+- ES6/Babel
 
 ### About
 This proof of concept is a SPA (single page app) built with the modern web component framework, Vue.  It also utilizes the "single source of truth" via Vuex to handle it's view/model bindings.  Pug is used as my HTML templating system because it's clean and concise (and much less a headache to look at than standard HTML) while SASS is used in much the same way to deal with CSS.  Webpack is used to bundle all the required resources into a single /dist/main.js file.  
