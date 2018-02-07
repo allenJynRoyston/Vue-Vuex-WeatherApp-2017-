@@ -1,7 +1,7 @@
 # Forecast Weatherapp + Darksky's API
 
 ### What the funk?!
-Full disclosure, this is built off a very similar project I completed as a proof of concept a few months ago, located [here](https://github.com/allenRoyston/weather-forecast-demo).  It uses a lot of the same technologies.  However, this build is signifigantly different in terms of features and complexity and as such, much improved over its predecessor.  
+Full disclosure, this is built off a very similar project I completed as a [proof of concept a few months ago](https://github.com/allenRoyston/weather-forecast-demo).  It uses a lot of the same technologies.  However, this build is signifigantly different in terms of features and complexity and as such, much improved over its predecessor.  
 
 ### Technologies used
 - VueJS
@@ -23,7 +23,7 @@ The only tricky part was getting the DarkSky API to retrieve weather data with o
 Lastly, it deserves to be mentioned that because this proof of concept requires API keys to reach both DarkSky and Google, for security reasons they won't be provided.  You'll have to supply your own.  See Prerequisites below for more information.
 
 ### Preview
-Live preview can be found [here](https://darkski-weather-api.herokuapp.com/#/)
+[Live preview can be found here](https://darkski-weather-api.herokuapp.com/#/)
 <br>
 *Could take a minute - the server sleeps when not in use*
  
