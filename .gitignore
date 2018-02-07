@@ -5,6 +5,7 @@ npm-debug.log
 yarn-error.log
 __.git
 src/phaser_Buildtool/node_modules/
+apiKeys.json
 
 # Editor directories and files
 .idea
